@@ -1,0 +1,125 @@
+<html>
+<head>
+    <script src="../JS/jquery-3.1.1.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+$("#boton").click(function() {
+  var opcion=$('#modulo').val();
+  $('#zona').html(' ')
+	$.ajax({
+            type:'POST',
+              data:{data:opcion},
+              dstaType:'json',
+              url:"../controlador/controlador_consulta.php",
+            success:function(datos) {
+                alert(datos)
+               if(datos.length==4){
+                    alert('no hay datos');
+                    return;
+                     }
+               var tabla="<table >";
+               tabla+="<tr><th class='id'>Registro</th>\n\
+               <th class='nombre'>Nombre</th><th class='numerico'>Edad</th>\n\
+               <th class='numerico'>Curso</th><th class='nombre'>Modulo</th></tr>"
+              // if (typeof datos == "string")
+              midato=JSON.parse(datos)
+             //alert(midato[0].Nombre)
+             
+             $.each( midato, function(i,dato) {
+	        tabla+="<tr>";                tabla+="<td class='id'>"+dato.id+"</td>";
+		tabla+="<td class='nombre'>"+dato.Nombre+"</td>";
+                tabla+="<td class='numerico'>"+dato.Edad+"</td>";
+                tabla+="<td class='numerico'>"+dato.Curso+"</td>";
+                tabla+="<td class='nombre'>"+dato.Modulo+"</td>";
+		tabla+="</tr>";
+            });
+            	tabla+="</table>";
+                alert(tabla)
+                $('#zona').append(tabla).hide().fadeIn('slow');
+            }, 
+        error: function(xhr){
+                alert("An error occured: " + xhr.status + " " + xhr.statusText);  
+             }           
+                    
+        });	
+                        
+                
+            
+	});
+        
+  /*$("#froga").click(function() {
+  nuevodato={"id":"1","name":"ana","gender":"aaaa","email":"ana@aaa.com","picture":"img/img.jpg"}
+  alert(nuevodato)
+ //nuevaopcion={"accion":"baja"}
+        datos=JSON.stringify(nuevodato);
+      //  opcion=JSON.stringify(nuevaopcion);
+        alert(datos)
+    //    alert(opcion)
+        alert("antes de ir")
+   var qwe = $.param({loquemando: datos});
+	$.ajax({
+            type:'POST',
+              data:qwe,
+              dstaType:'json',
+              url:"EJERCICIOBDfroga.php",
+            //   headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            success:function(data) {
+                alert("he vuelto")
+                alert(data)
+               
+               
+              
+            
+            }, 
+        error: function(xhr){
+                alert("An error occured: " + xhr.status + " " + xhr.statusText);  
+             }           
+                    
+        });	
+                        
+             
+            
+	});   */      
+        
+});
+</script>
+<style type="text/css">
+		.page{ width:80%; margin:auto; padding:10px; background: teal; }
+                h1{text-align: center}
+                hr{margin:20px;}
+                #tblseleccion{ border:1px solid  white;color:white; margin:auto;margin-bottom: 40px;}
+                #tblAlumnos {margin:auto;  margin-bottom: 30px;border:1px solid black;}
+		#tblAlumnos .id { min-width: 60px }
+		#tblAlumnos .nombre { min-width: 150px }
+                #tblAlumnos .numerico { min-width: 100px; text-align: right }
+                tr,td,th{border:1px solid  white;}
+                button{margin:20px; }
+  </style>
+</head>
+<body>
+
+
+   <div class="page">
+        <div class="content">
+      <h1>Consultas Ajax con jQuery</h1>
+      <hr /> 
+
+    <div>
+        
+   <select id="modulo">
+        <option value="Programacion">PROGRAMACION</option>
+        <option value="Bases de datos">BASES DE DATOS</option>
+        <option value="Interfaces Web">INTERFACES WEB</option>
+        <option value="Sistemas">SISTEMAS</option>
+   </select>
+    <input type="button" name="boton"  id="boton" value="cargar"/>
+   <input type="button" name="froga"  id="froga" value="froga"/>
+    </div>
+    <div id="zona">
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>

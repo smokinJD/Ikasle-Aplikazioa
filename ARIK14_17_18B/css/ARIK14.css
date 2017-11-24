@@ -1,0 +1,45 @@
+
+.vertical-menu {
+    width: 200px; /* Set a width if you like */
+    display:table-cell;
+  }
+  .dcha{ display: table-cell;}
+
+#central{
+    background-color: #ccc; 
+    display: table;
+    width: 100%;
+    }
+    
+.dcha #nuevo, .dcha #sumarGol{display:  none;
+}
+.dcha #nuevo label{width:100px;margin:25px;padding:5px}
+.dcha #nuevo input{margin:15px;}
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    color: white;}
+
+
+.page{ width:95%; margin:auto; padding:10px; background: teal; }
+                h1{text-align: center}
+                hr{margin:20px;}
+                #tblseleccion{ border:1px solid  white;color:white; margin:auto;margin-bottom: 40px;}
+                #tblAlumnos {margin:auto;  margin-bottom: 30px;border:1px solid black;}
+		#tblAlumnos .id { min-width: 60px }
+		#tblAlumnos .nombre { min-width: 150px }
+                #tblAlumnos .numerico { min-width: 100px; text-align: right }
+                tr,td,th{border:1px solid  white;}
+                button{margin:20px; }
